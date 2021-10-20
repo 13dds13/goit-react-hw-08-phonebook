@@ -1,5 +1,5 @@
 import { checkIsDoublingContacts } from "../../service/contactsPrepations";
-import { addContactRequest } from "../contacts/contactsActions/contactsActions";
+import { addContactRequest } from "../contacts/contactsActions";
 import dataUI from "../../data/dataUI.json";
 
 const middlewarePreventContactsDuplication = (store) => (next) => (action) => {

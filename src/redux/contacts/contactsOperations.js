@@ -1,29 +1,31 @@
 import {
-  fetchContactsRequest,
-  fetchContactsSuccess,
-  fetchContactsError,
+  getContactsRequest,
+  // getContactsSuccess,
+  getContactsError,
   addContactRequest,
   addContactSuccess,
   addContactError,
   removeContactRequest,
   removeContactSuccess,
   removeContactError,
-} from "../contactsActions/contactsActions";
+} from "./contactsActions";
 import axios from "axios";
-import { BASE_URL } from "../../../data/firebase.json";
+import { BASE_URL, contactsHandling } from "../../data/db.json";
 
-export const fetchContacts = () => (dispatch) => {
-  dispatch(fetchContactsRequest());
-  axios(`${BASE_URL}.json`)
-    .then(({ data }) => {
-      if (!data) return;
-      const preparadeData = Object.keys(data).map((key) => ({
-        ...data[key],
-        id: key,
-      }));
-      dispatch(fetchContactsSuccess(preparadeData));
+export const getContacts = (token) => (dispatch) => {
+  dispatch(getContactsRequest());
+  axios.defaults.headers.common["Authorization"] = token;
+  axios(BASE_URL + contactsHandling)
+    .then((res) => {
+      console.log(res);
+      // if (!data) return;
+      // const preparadedData = Object.keys(data).map((key) => ({
+      //   ...data[key],
+      //   id: key,
+      // }));
+      // dispatch(getContactsSuccess(preparadedData));
     })
-    .catch((error) => dispatch(fetchContactsError(error)));
+    .catch((error) => dispatch(getContactsError(error)));
 };
 
 export const addContact = (data) => (dispatch) => {

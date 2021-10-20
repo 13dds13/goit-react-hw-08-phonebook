@@ -6,8 +6,29 @@ export const mainRoutes = [
     path: "/",
     exact: true,
     type: "public",
+    restricted: false,
     component: lazy(() =>
       import("../pages/HomePage" /* webpackChunkName: "HomePage" */)
+    ),
+  },
+
+  {
+    name: "Log in",
+    path: "/login",
+    type: "public",
+    restricted: true,
+    component: lazy(() =>
+      import("../pages/LoginPage" /* webpackChunkName: "LoginPage" */)
+    ),
+  },
+
+  {
+    name: "Sign up",
+    path: "/register",
+    type: "public",
+    restricted: true,
+    component: lazy(() =>
+      import("../pages/SignupPage" /* webpackChunkName: "RegisterPage" */)
     ),
   },
 
@@ -17,26 +38,6 @@ export const mainRoutes = [
     type: "private",
     component: lazy(() =>
       import("../pages/ContactsPage" /* webpackChunkName: "ContactsPage" */)
-    ),
-  },
-
-  {
-    name: "Register",
-    path: "/register",
-    type: "public",
-    restricted: true,
-    component: lazy(() =>
-      import("../pages/RegisterPage" /* webpackChunkName: "RegisterPage" */)
-    ),
-  },
-
-  {
-    name: "Login",
-    path: "/login",
-    type: "public",
-    restricted: true,
-    component: lazy(() =>
-      import("../pages/LoginPage" /* webpackChunkName: "LoginPage" */)
     ),
   },
 ];

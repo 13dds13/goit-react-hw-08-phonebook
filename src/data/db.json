@@ -1,0 +1,12 @@
+{
+  "BASE_URL": "https://connections-api.herokuapp.com",
+
+  "users": {
+    "signup": "/users/signup",
+    "login": "/users/login",
+    "logout": "/users/logout",
+    "refresh": "/users/current"
+  },
+
+  "contactsHandling": "/contacts"
+}

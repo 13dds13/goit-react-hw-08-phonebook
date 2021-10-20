@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getContactsData } from "../../redux/contacts/contactsSelectors/contactsSelectors";
+import { getContactsData } from "../../redux/contacts/contactsSelectors";
 import dataUI from "../../data/dataUI.json";
 import styles from "./ContactsList.module.css";
 import ContactsListItem from "./contactsListItem/ContactsListItem";
-import { removeContact } from "../../redux/contacts/contactsOperations/contactsOperations";
+import { removeContact } from "../../redux/contacts/contactsOperations";
 import Notification from "../notification/Notification";
 
 const ContactsList = () => {

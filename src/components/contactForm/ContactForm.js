@@ -4,9 +4,9 @@ import { nanoid } from "@reduxjs/toolkit";
 import PropTypes from "prop-types";
 import { FORM_INITIAL_DATA } from "../../data/initialData.json";
 import dataUI from "../../data/dataUI.json";
-import { addContact } from "../../redux/contacts/contactsOperations/contactsOperations";
+import { addContact } from "../../redux/contacts/contactsOperations";
 import { form, btn, input } from "./ContactForm.module.css";
-import { getContacts } from "../../redux/contacts/contactsSelectors/contactsSelectors";
+import { getContacts } from "../../redux/contacts/contactsSelectors";
 import FormInputAndLabelName from "../inputAndLabel/formInputAndLabel/FormInputAndLabelName";
 import FormInputAndLabelNumber from "../inputAndLabel/formInputAndLabel/FormInputAndLabelNumber";
 

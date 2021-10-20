@@ -1,11 +1,32 @@
 import { configureStore } from "@reduxjs/toolkit";
-import contactsReduser from "./contacts/contactsReduser/contactsReduser";
+import {
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import contactsReduser from "./contacts/contactsReduser";
 import middlewarePreventContactsDuplication from "./middlewares/middlewares";
+import isLoadingReducer from "./redusers/redusers";
+import usersRedusers from "./users/usersRedusers";
 
 const store = configureStore({
-  reducer: { contacts: contactsReduser },
+  reducer: {
+    user: usersRedusers,
+    contacts: contactsReduser,
+    isLoading: isLoadingReducer,
+  },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(middlewarePreventContactsDuplication),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(middlewarePreventContactsDuplication),
 });
 
-export default store;
+const persistor = persistStore(store);
+
+export { store, persistor };

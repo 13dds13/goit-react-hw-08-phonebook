@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { inputSearch } from "../../data/dataUI.json";
 import { wrap } from "./Filter.module.css";
-import { setFilter } from "../../redux/contacts/contactsActions/contactsActions";
-import { getFilter } from "../../redux/contacts/contactsSelectors/contactsSelectors";
+import { setFilter } from "../../redux/contacts/contactsActions";
+import { getFilter } from "../../redux/contacts/contactsSelectors";
 import FilterInputAndLabel from "../inputAndLabel/FilterInputAndLabel";
 
 const Filter = () => {
