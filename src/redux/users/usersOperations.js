@@ -20,7 +20,11 @@ export const usersSignup = (userData) => (dispatch) => {
   axios
     .post(BASE_URL + users.signup, userData)
     .then(({ data }) => {
-      dispatch(signupUsersSuccess(data));
+      const {
+        user: { name, email },
+        token,
+      } = data;
+      dispatch(signupUsersSuccess({ name, email, token }));
     })
     .catch((error) => dispatch(signupUsersError(error)));
 };
@@ -30,7 +34,11 @@ export const usersLogin = (userData) => (dispatch) => {
   axios
     .post(BASE_URL + users.login, userData)
     .then(({ data }) => {
-      dispatch(loginUsersSuccess(data));
+      const {
+        user: { name, email },
+        token,
+      } = data;
+      dispatch(loginUsersSuccess({ name, email, token }));
     })
     .catch((error) => dispatch(loginUsersError(error)));
 };

@@ -1,6 +1,6 @@
 import {
   getContactsRequest,
-  // getContactsSuccess,
+  getContactsSuccess,
   getContactsError,
   addContactRequest,
   addContactSuccess,
@@ -16,15 +16,7 @@ export const getContacts = (token) => (dispatch) => {
   dispatch(getContactsRequest());
   axios.defaults.headers.common["Authorization"] = token;
   axios(BASE_URL + contactsHandling)
-    .then((res) => {
-      console.log(res);
-      // if (!data) return;
-      // const preparadedData = Object.keys(data).map((key) => ({
-      //   ...data[key],
-      //   id: key,
-      // }));
-      // dispatch(getContactsSuccess(preparadedData));
-    })
+    .then(({ data }) => dispatch(getContactsSuccess(data)))
     .catch((error) => dispatch(getContactsError(error)));
 };
 
@@ -32,11 +24,8 @@ export const addContact = (data) => (dispatch) => {
   const isAlreadyInContacts = dispatch(addContactRequest(data));
   if (isAlreadyInContacts) return;
   axios
-    .post(`${BASE_URL}.json`, data)
-    .then((res) => {
-      const id = res.data.name;
-      dispatch(addContactSuccess({ ...data, id }));
-    })
+    .post(BASE_URL + contactsHandling, data)
+    .then(({ data }) => dispatch(addContactSuccess(data)))
     .catch((error) => dispatch(addContactError(error)));
 };
 
@@ -44,7 +33,18 @@ export const removeContact = (id) => (dispatch) => {
   dispatch(removeContactRequest());
 
   axios
-    .delete(`${BASE_URL}/${id}.json`)
+    .delete(`${BASE_URL}${contactsHandling}/${id}`)
     .then(dispatch(removeContactSuccess(id)))
     .catch((error) => dispatch(removeContactError(error)));
 };
+
+export const editContact =
+  ({ id, data }) =>
+  (dispatch) => {
+    dispatch(removeContactRequest());
+
+    axios
+      .delete(`${BASE_URL}${contactsHandling}/${id}`, data)
+      .then(dispatch(removeContactSuccess(id)))
+      .catch((error) => dispatch(removeContactError(error)));
+  };
