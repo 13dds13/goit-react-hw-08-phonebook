@@ -1,23 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import FormInputAndLabelName from "../../inputAndLabel/formInputAndLabel/FormInputAndLabelName";
-import FormInputAndLabelNumber from "../../inputAndLabel/formInputAndLabel/FormInputAndLabelNumber";
+import EditorForContact from "../../editorForContact/EditorForContact";
+import stylesE from "./ContactsListItem.module.css";
 
-const ContactsListItem = ({
-  contact,
-  editContactItem,
-  removeContact,
-  styles,
-  deleteBtn,
-}) => {
+const ContactsListItem = ({ contact, removeContact, styles, deleteBtn }) => {
   const [editor, setEditor] = useState(false);
   const dispatch = useDispatch();
   const removeContactItem = () => dispatch(removeContact(contact.id));
 
   const onClick = () => {
-    setEditor((prev) => !prev);
+    setEditor(true);
   };
+
+  useEffect(() => {
+    setEditor(false);
+  }, [contact]);
 
   const { listItem, name, number, btn } = styles;
 
@@ -35,13 +33,15 @@ const ContactsListItem = ({
         {deleteBtn}
       </button>
       {editor && (
-        <>
-          <FormInputAndLabelName />
-          <FormInputAndLabelNumber />
-          <button className={btn} type="button" onClick={onClick}>
-            Save
-          </button>
-        </>
+        <div className={stylesE.editor}>
+          <EditorForContact
+            id={contact.id}
+            nameInitial={contact.name}
+            numberInitial={contact.number}
+            className={btn}
+            onClick={onClick}
+          />
+        </div>
       )}
     </li>
   );

@@ -9,6 +9,9 @@ import {
   removeContactError,
   removeContactRequest,
   removeContactSuccess,
+  editContactsRequest,
+  editContactsSuccess,
+  editContactsError,
 } from "../contacts/contactsActions";
 import {
   signupUsersError,
@@ -35,6 +38,9 @@ const isLoadingReducer = createReducer(false, {
   [removeContactRequest]: () => true,
   [removeContactSuccess]: () => false,
   [removeContactError]: () => false,
+  [editContactsRequest]: () => true,
+  [editContactsSuccess]: () => false,
+  [editContactsError]: () => false,
   [signupUsersRequest]: () => true,
   [signupUsersSuccess]: () => false,
   [signupUsersError]: () => false,

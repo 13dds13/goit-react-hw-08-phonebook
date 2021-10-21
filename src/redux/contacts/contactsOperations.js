@@ -8,6 +8,9 @@ import {
   removeContactRequest,
   removeContactSuccess,
   removeContactError,
+  editContactsRequest,
+  editContactsSuccess,
+  editContactsError,
 } from "./contactsActions";
 import axios from "axios";
 import { BASE_URL, contactsHandling } from "../../data/db.json";
@@ -38,13 +41,11 @@ export const removeContact = (id) => (dispatch) => {
     .catch((error) => dispatch(removeContactError(error)));
 };
 
-export const editContact =
-  ({ id, data }) =>
-  (dispatch) => {
-    dispatch(removeContactRequest());
-
-    axios
-      .delete(`${BASE_URL}${contactsHandling}/${id}`, data)
-      .then(dispatch(removeContactSuccess(id)))
-      .catch((error) => dispatch(removeContactError(error)));
-  };
+export const editContact = (id, data) => (dispatch) => {
+  const isAlreadyInContacts = dispatch(editContactsRequest({ id, ...data }));
+  if (isAlreadyInContacts) return;
+  axios
+    .patch(`${BASE_URL}${contactsHandling}/${id}`, data)
+    .then(({ data }) => dispatch(editContactsSuccess(data)))
+    .catch((error) => dispatch(editContactsError(error)));
+};
