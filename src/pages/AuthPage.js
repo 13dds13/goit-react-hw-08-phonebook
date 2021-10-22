@@ -8,7 +8,6 @@ import { useLocation } from "react-router";
 const SignupPage = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  console.log(pathname);
   const handleSubmit = (userData) => {
     pathname === "/signup"
       ? dispatch(usersSignup(userData))

@@ -1,8 +1,8 @@
 {
   "files": {
     "AuthPage.css": "/static/css/AuthPage.d04b60d4.chunk.css",
-    "AuthPage.js": "/static/js/AuthPage.ad3703bc.chunk.js",
-    "AuthPage.js.map": "/static/js/AuthPage.ad3703bc.chunk.js.map",
+    "AuthPage.js": "/static/js/AuthPage.41e30603.chunk.js",
+    "AuthPage.js.map": "/static/js/AuthPage.41e30603.chunk.js.map",
     "ContactsPage.css": "/static/css/ContactsPage.9ce18780.chunk.css",
     "ContactsPage.js": "/static/js/ContactsPage.2f07cc1d.chunk.js",
     "ContactsPage.js.map": "/static/js/ContactsPage.2f07cc1d.chunk.js.map",
@@ -11,8 +11,8 @@
     "main.css": "/static/css/main.0c534d26.chunk.css",
     "main.js": "/static/js/main.1bfbbfd7.chunk.js",
     "main.js.map": "/static/js/main.1bfbbfd7.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.0ddf5f0e.js",
-    "runtime-main.js.map": "/static/js/runtime-main.0ddf5f0e.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c41c3033.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c41c3033.js.map",
     "static/css/5.bc922b9c.chunk.css": "/static/css/5.bc922b9c.chunk.css",
     "static/js/5.c855ed03.chunk.js": "/static/js/5.c855ed03.chunk.js",
     "static/js/5.c855ed03.chunk.js.map": "/static/js/5.c855ed03.chunk.js.map",
@@ -24,7 +24,7 @@
     "static/js/5.c855ed03.chunk.js.LICENSE.txt": "/static/js/5.c855ed03.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.0ddf5f0e.js",
+    "static/js/runtime-main.c41c3033.js",
     "static/css/5.bc922b9c.chunk.css",
     "static/js/5.c855ed03.chunk.js",
     "static/css/main.0c534d26.chunk.css",
