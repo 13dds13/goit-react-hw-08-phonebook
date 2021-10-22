@@ -14,13 +14,13 @@ import {
 } from "./contactsActions";
 import axios from "axios";
 import { BASE_URL, contactsHandling } from "../../data/db.json";
+import { errorMsg } from "../../data/dataUI.json";
 
-export const getContacts = (token) => (dispatch) => {
+export const getContacts = () => (dispatch) => {
   dispatch(getContactsRequest());
-  axios.defaults.headers.common["Authorization"] = token;
   axios(BASE_URL + contactsHandling)
     .then(({ data }) => dispatch(getContactsSuccess(data)))
-    .catch((error) => dispatch(getContactsError(error)));
+    .catch((error) => error && dispatch(getContactsError(errorMsg.fatalError)));
 };
 
 export const addContact = (data) => (dispatch) => {
@@ -29,7 +29,7 @@ export const addContact = (data) => (dispatch) => {
   axios
     .post(BASE_URL + contactsHandling, data)
     .then(({ data }) => dispatch(addContactSuccess(data)))
-    .catch((error) => dispatch(addContactError(error)));
+    .catch((error) => error && dispatch(addContactError(errorMsg.fatalError)));
 };
 
 export const removeContact = (id) => (dispatch) => {
@@ -38,7 +38,9 @@ export const removeContact = (id) => (dispatch) => {
   axios
     .delete(`${BASE_URL}${contactsHandling}/${id}`)
     .then(dispatch(removeContactSuccess(id)))
-    .catch((error) => dispatch(removeContactError(error)));
+    .catch(
+      (error) => error && dispatch(removeContactError(errorMsg.fatalError))
+    );
 };
 
 export const editContact = (id, data) => (dispatch) => {
@@ -47,5 +49,7 @@ export const editContact = (id, data) => (dispatch) => {
   axios
     .patch(`${BASE_URL}${contactsHandling}/${id}`, data)
     .then(({ data }) => dispatch(editContactsSuccess(data)))
-    .catch((error) => dispatch(editContactsError(error)));
+    .catch(
+      (error) => error && dispatch(editContactsError(errorMsg.fatalError))
+    );
 };

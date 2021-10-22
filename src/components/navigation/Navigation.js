@@ -2,16 +2,30 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getIsLogged } from "../../redux/users/usersSelectors";
+import { container, list, item, activeItem } from "./Navigation.module.css";
 
 const Navigation = ({ routes }) => {
   const isLogged = useSelector(getIsLogged);
-  return routes.map((route) =>
-    (isLogged && route.restricted) ||
-    (!isLogged && route.type === "private") ? null : (
-      <NavLink to={route.path} exact key={route.path}>
-        {route.name}
-      </NavLink>
-    )
+  return (
+    <nav>
+      <ul className={list}>
+        {routes.map((route) =>
+          (isLogged && route.restricted) ||
+          (!isLogged && route.type === "private") ? null : (
+            <li key={route.path}>
+              <NavLink
+                to={route.path}
+                exact
+                className={item}
+                activeClassName={activeItem}
+              >
+                {route.name}
+              </NavLink>
+            </li>
+          )
+        )}
+      </ul>
+    </nav>
   );
 };
 

@@ -5,10 +5,16 @@
   "inputName": "Enter name:",
   "inputTel": "Enter number:",
   "submitBtn": "Add to contacts",
+  "editBtn": "Edit",
   "deleteBtn": "Delete",
   "titleMain": "Phonebook",
   "titleSecondary": "Contacts",
   "inputSearch": "Find contact by name:",
   "noDataToRender": "No contacts :(",
-  "isLoadingNow": "...Loading, please wait!"
+  "isLoadingNow": "...Loading, please wait!",
+  "errorMsg": {
+    "badSignup": "Try another name or email",
+    "badLogin": "Wrong name or email. Try again",
+    "fatalError": "Ooops something went wrong!"
+  }
 }

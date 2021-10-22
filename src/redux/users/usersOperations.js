@@ -14,6 +14,7 @@ import {
 } from "./usersActions";
 import axios from "axios";
 import { BASE_URL, users } from "../../data/db.json";
+import { errorMsg } from "../../data/dataUI.json";
 
 export const usersSignup = (userData) => (dispatch) => {
   dispatch(signupUsersRequest());
@@ -25,8 +26,9 @@ export const usersSignup = (userData) => (dispatch) => {
         token,
       } = data;
       dispatch(signupUsersSuccess({ name, email, token }));
+      axios.defaults.headers.common["Authorization"] = token;
     })
-    .catch((error) => dispatch(signupUsersError(error)));
+    .catch((error) => error && dispatch(signupUsersError(errorMsg.badSignup)));
 };
 
 export const usersLogin = (userData) => (dispatch) => {
@@ -39,8 +41,9 @@ export const usersLogin = (userData) => (dispatch) => {
         token,
       } = data;
       dispatch(loginUsersSuccess({ name, email, token }));
+      axios.defaults.headers.common["Authorization"] = token;
     })
-    .catch((error) => dispatch(loginUsersError(error)));
+    .catch((error) => error && dispatch(loginUsersError(errorMsg.badLogin)));
 };
 
 export const usersRefresh = (token) => (dispatch) => {
@@ -48,18 +51,21 @@ export const usersRefresh = (token) => (dispatch) => {
   axios.defaults.headers.common["Authorization"] = token;
   axios(BASE_URL + users.refresh)
     .then(({ data }) => {
-      dispatch(refreshUsersSuccess(data));
+      return dispatch(refreshUsersSuccess(data));
     })
-    .catch((error) => dispatch(refreshUsersError(error)));
+    .catch(
+      (error) => error && dispatch(refreshUsersError(errorMsg.fatalError))
+    );
 };
 
-export const usersLogout = (token) => (dispatch) => {
+export const usersLogout = () => (dispatch) => {
   dispatch(logoutUsersRequest());
-  axios.defaults.headers.common["Authorization"] = token;
+
   axios
     .post(BASE_URL + users.logout)
-    .then(({ data }) => {
-      dispatch(logoutUsersSuccess(data));
+    .then(() => {
+      axios.defaults.headers.common["Authorization"] = "";
+      return dispatch(logoutUsersSuccess());
     })
-    .catch((error) => dispatch(logoutUsersError(error)));
+    .catch((error) => error && dispatch(logoutUsersError(errorMsg.fatalError)));
 };

@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.welcomeText {
+  margin-right: 12px;
+}

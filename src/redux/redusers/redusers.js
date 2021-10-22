@@ -28,7 +28,7 @@ import {
   refreshUsersError,
 } from "../users/usersActions";
 
-const isLoadingReducer = createReducer(false, {
+export const isLoadingReducer = createReducer(false, {
   [getContactsRequest]: () => true,
   [getContactsSuccess]: () => false,
   [getContactsError]: () => false,
@@ -55,4 +55,21 @@ const isLoadingReducer = createReducer(false, {
   [refreshUsersError]: () => false,
 });
 
-export default isLoadingReducer;
+export const errorReducer = createReducer("", {
+  [getContactsError]: (_, { payload }) => payload,
+  [addContactError]: (_, { payload }) => payload,
+  [removeContactError]: (_, { payload }) => payload,
+  [editContactsError]: (_, { payload }) => payload,
+  [signupUsersError]: (_, { payload }) => payload,
+  [loginUsersError]: (_, { payload }) => payload,
+  [logoutUsersError]: (_, { payload }) => payload,
+  [refreshUsersError]: (_, { payload }) => payload,
+  [getContactsSuccess]: () => "",
+  [addContactSuccess]: () => "",
+  [removeContactSuccess]: () => "",
+  [editContactsSuccess]: () => "",
+  [signupUsersSuccess]: () => "",
+  [loginUsersSuccess]: () => "",
+  [logoutUsersSuccess]: () => "",
+  [refreshUsersSuccess]: () => "",
+});

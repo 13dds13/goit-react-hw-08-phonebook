@@ -10,7 +10,7 @@ import {
 } from "redux-persist";
 import contactsReduser from "./contacts/contactsReduser";
 import middlewarePreventContactsDuplication from "./middlewares/middlewares";
-import isLoadingReducer from "./redusers/redusers";
+import { isLoadingReducer, errorReducer } from "./redusers/redusers";
 import usersRedusers from "./users/usersRedusers";
 
 const store = configureStore({
@@ -18,6 +18,7 @@ const store = configureStore({
     user: usersRedusers,
     contacts: contactsReduser,
     isLoading: isLoadingReducer,
+    error: errorReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
