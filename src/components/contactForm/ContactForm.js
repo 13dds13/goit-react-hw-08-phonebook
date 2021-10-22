@@ -16,9 +16,10 @@ const ContactForm = ({ editorData, isLoading, id }) => {
   const contacts = useSelector(getContacts);
   const initData = editorData || FORM_INITIAL_DATA;
   const [state, setState] = useState(initData);
+
   useEffect(() => {
-    setState(FORM_INITIAL_DATA);
-  }, [contacts]);
+    !editorData && setState(FORM_INITIAL_DATA);
+  }, [contacts, editorData]);
 
   const { name, number } = state;
 
