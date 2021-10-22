@@ -35,7 +35,6 @@ const App = () => {
   return (
     <>
       <header className={header}>
-        {errorMsg && <Notification title={errorMsg} />}
         <Navigation routes={mainRoutes} />
         {isLogged && (
           <HeaderUserWelcome
@@ -46,6 +45,7 @@ const App = () => {
         )}
       </header>
       <hr />
+      {errorMsg && <Notification title={errorMsg} />}
       <main className={main}>
         <RoutesList routes={mainRoutes} />
       </main>

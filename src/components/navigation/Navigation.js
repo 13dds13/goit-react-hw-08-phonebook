@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getIsLogged } from "../../redux/users/usersSelectors";
-import { container, list, item, activeItem } from "./Navigation.module.css";
+import { list, item, activeItem } from "./Navigation.module.css";
 
 const Navigation = ({ routes }) => {
   const isLogged = useSelector(getIsLogged);

@@ -18,17 +18,17 @@ export const mainRoutes = [
     type: "public",
     restricted: true,
     component: lazy(() =>
-      import("../pages/LoginPage" /* webpackChunkName: "LoginPage" */)
+      import("../pages/AuthPage" /* webpackChunkName: "AuthPage" */)
     ),
   },
 
   {
     name: "Sign up",
-    path: "/register",
+    path: "/signup",
     type: "public",
     restricted: true,
     component: lazy(() =>
-      import("../pages/SignupPage" /* webpackChunkName: "RegisterPage" */)
+      import("../pages/AuthPage" /* webpackChunkName: "AuthPage" */)
     ),
   },
 
