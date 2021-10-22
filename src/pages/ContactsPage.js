@@ -25,7 +25,7 @@ const ContactsPage = () => {
   return (
     <div className={styles.container}>
       <Title title={titleMain} />
-      <ContactForm isLoading={isLoading} />
+      <ContactForm isLoading={isLoading} initData />
       <Title title={titleSecondary} />
       <Filter />
       {isLoading ? <Notification title={isLoadingNow} /> : <ContactsList />}

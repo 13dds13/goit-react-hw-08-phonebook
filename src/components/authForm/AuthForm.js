@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+import styles from "./AuthForm.module.css";
 
 const AuthForm = ({ handleSubmit, btnName }) => {
   const [name, setName] = useState("");
@@ -27,7 +29,7 @@ const AuthForm = ({ handleSubmit, btnName }) => {
     <form onSubmit={onSubmit}>
       {btnName === "Sign up" && (
         <label>
-          name
+          name:{" "}
           <input
             type="text"
             autoComplete="off"
@@ -35,11 +37,12 @@ const AuthForm = ({ handleSubmit, btnName }) => {
             onChange={onChange}
             value={name}
             required
+            className={styles.input}
           />
         </label>
       )}
       <label>
-        email
+        email:{" "}
         <input
           type="email"
           autoComplete="off"
@@ -47,10 +50,11 @@ const AuthForm = ({ handleSubmit, btnName }) => {
           onChange={onChange}
           value={email}
           required
+          className={styles.input}
         />
       </label>
       <label>
-        password
+        password:{" "}
         <input
           type="password"
           autoComplete="off"
@@ -58,11 +62,19 @@ const AuthForm = ({ handleSubmit, btnName }) => {
           onChange={onChange}
           value={password}
           required
+          className={styles.input}
         />
       </label>
-      <button type="submit">{btnName}</button>
+      <button type="submit" className={styles.btn}>
+        {btnName}
+      </button>
     </form>
   );
+};
+
+AuthForm.propTypes = {
+  handleSubmit: PropTypes.func,
+  btnName: PropTypes.string,
 };
 
 export default AuthForm;
